@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASDINsight - Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/5.png') }}" alt="ASDInsight Logo" />
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('prediction') }}">Prediction</a></li>
+            <li><a href="{{ url_for('recommendation') }}">Recommendation</a></li>
+        </ul>
+    </nav>
+
+    <section class="recommendation-section">
+        <h1>Recommended Treatments</h1>
+
+        <p>{{ recommendation_message }}</p>
+
+        {% if treatments %}
+            <div class="treatment-list">
+                <ul>
+                    {% for treatment in treatments %}
+                        <li>{{ treatment }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <p> For more details on Autism and its treatments and personalized guidance, please check out our ASDINsight chatbot below. Feel free to ask any questions you have!</p>
+
+    </section>
+
+    <!-- Embedded Chatbot Section -->
+
+        <script>
+            window.embeddedChatbotConfig = {
+                chatbotId: "rFxt8G9-Ts_v54_D8eolB",
+                domain: "www.chatbase.co"
+            }
+        </script>
+        <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="rFxt8G9-Ts_v54_D8eolB"
+            domain="www.chatbase.co"
+            defer>
+        </script>
+</body>
+</html>

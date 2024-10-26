@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASDINsight - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="static/images/5.png" alt="ASDInsight Logo" />
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="#" id="about-link">About</a></li> <!-- Changed href to # -->
+            <li><a href="{{ url_for('prediction') }}">Prediction</a></li>
+            <li><a href="{{ url_for('recommendation') }}">Recommendation</a></li>
+        </ul>
+    </nav>
+
+    <!-- Slider Section -->
+    <section class="slider">
+        <div class="slides">
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/10.jpeg') }}" alt="Slider Image 1">
+                <button class="arrow-button next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/7.jpg') }}" alt="Slider Image 2">
+                <button class="arrow-button next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/3.webp') }}" alt="Slider Image 3">
+                <button class="arrow-button next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+        </div>
+        <div class="slide-content fade-in">
+            <h1 id="welcome-message"></h1>
+            <p id="para" style="display:none">Start the assessment to get personalized recommendations.</p>
+            <button id="assessment-btn" style="display: none;" onclick="window.location.href='{{ url_for('prediction') }}'" class="assessment-btn">Start Assessment</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+
+    <section id="about-section" > <!-- Initially hidden -->
+        <div class="head">
+            <h2 class="about-head">What is Autism?</h2>
+        </div>
+        <div class="about-para">
+        <p>
+            Autism is a developmental disorder with symptoms that appear within the first three years of life. Its formal diagnostic name is autism spectrum disorder. The word “spectrum” indicates that autism appears in different forms with varying levels of severity. That means that each individual with autism experiences their own unique strengths, symptoms, and challenges.
+
+Understanding more about ASD can help you better understand the individuals who are living with it.
+        </p>
+        <img src="{{ url_for('static', filename='images/autism-page-img-1.png') }}" alt="Autism Spectrum Disorder" class="asd-image">
+            <h2>How autism spectrum disorders are described?</h2>
+            <p>
+                Psychiatrists and other clinicians rely on the fifth edition of the Diagnostic and Statistical Manual of Mental Disorders (DSM-5) to define autism and its symptoms. The DSM-5 definition recognizes two main symptom areas:
+
+Deficits in social communication and interaction
+Restricted, repetitive behaviors, interests, or activities
+These symptoms appear early in a child’s development—although diagnosis may occur later. Autism is diagnosed when symptoms cause developmental challenges that are not better explained by other conditions.
+
+The definition of autism has been refined over the years. Between 1995 and 2011, the DSM-IV grouped Asperger’s Syndrome and Pervasive Developmental Disorder Not Otherwise Specified (PDD-NOS) with autism. Asperger’s syndrome was an autism spectrum disorder marked by strong verbal language skills and, often, high intellectual ability. PDD-NOS was a more general diagnosis for people who did not fit clearly into the other two categories.
+
+However, the DSM-5 no longer recognizes Asperger’s syndrome or PDD-NOS as separate diagnoses. Individuals who would previously have received either of these diagnoses may now receive a diagnosis of autism spectrum disorder instead.
+</p>
+            <h2>
+Autism presentations and behaviors
+            </h2>
+            <p>
+Individuals with autism may present a range of symptoms, such as:
+
+Reduced eye contact
+Differences in body language
+Lack of facial expressions
+Not engaging in imaginative play
+Repeating gestures or sounds
+Closely focused interests
+Indifference to temperature extremes
+These are just a few examples of the symptoms an individual with autism may experience. Any individual could have some, all, or none of these symptoms. Keep in mind that having these symptoms does not necessarily mean a person has autism. Only a qualified medical professional can diagnose autism spectrum disorder.
+
+Most importantly, an individual with autism is first and foremost an individual. Learning about the symptoms can help you start to understand the behaviors and challenges related to autism, but that’s not the same as getting to know the individual. Each person with autism has their own strengths, likes, dislikes, interests, challenges, and skills, just like you do.
+            </p>
+    </div>
+
+        <section class="features">
+        <h2>Our Features</h2>
+        <div class="feature">
+            <img src="{{ url_for('static', filename='images/1.webp') }}" alt="Feature 1" class="feature-image">
+            <div class="feature-description">
+                <h3>Predict ASD Risk</h3>
+                <p>We provide a comprehensive assessment to help you understand your child's developmental needs.</p>
+            </div>
+        </div>
+        <div class="feature">
+            <img src="{{ url_for('static', filename='images/homepage_image.jpeg') }}" alt="Feature 2" class="feature-image">
+            <div class="feature-description">
+                <h3>Personalized Recommendations</h3>
+                <p>Get tailored recommendations to support your child's growth and development.</p>
+            </div>
+        </div>
+    </section>
+    </section>
+
+    <script>
+        // Image slider control
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1; // Wrap around to last slide
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0; // Wrap around to first slide
+            }
+
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000);
+
+        // Typing effect for welcome message
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const message = "Welcome to ASDInsight!";
+            const welcomeElement = document.getElementById('welcome-message');
+            let charIndex = 0;
+
+            function typeWelcomeMessage() {
+                if (charIndex < message.length) {
+                    welcomeElement.textContent += message.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWelcomeMessage, 100); // Typing speed
+                } else {
+                    // Show paragraph and button after typing completes
+                    setTimeout(() => {
+                        const para = document.getElementById('para');
+                        para.style.display = 'block';
+                        para.classList.add('fade-in');
+                    }, 500); // Delay before showing the paragraph
+
+                    // Show button after another short delay
+                    setTimeout(() => {
+                        const button = document.getElementById('assessment-btn');
+                        button.style.display = 'block';
+                        button.classList.add('fade-in');
+                    }, 1000);
+                }
+            }
+
+            typeWelcomeMessage();
+        });
+
+        // Show the About section when clicking the About link
+        document.getElementById('about-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            document.getElementById('about-section').style.display = 'block'; // Show the About section
+            window.scrollTo({ top: document.getElementById('about-section').offsetTop, behavior: 'smooth' }); // Scroll to About section
+        });
+    </script>
+
+</body>
+</html>

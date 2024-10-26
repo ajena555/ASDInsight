@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASDINsight - Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+        <img src="static/images/5.png" alt="ASDInsight Logo" />
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('prediction') }}">Prediction</a></li>
+            <li><a href="{{ url_for('recommendation') }}">Recommendation</a></li>
+        </ul>
+    </nav>
+    <section class="form2">
+        <h1>Predict ASD Risk</h1>
+        <form action="{{ url_for('prediction') }}" method="POST">
+            <!-- Questions and Medical History Section -->
+            <label>Does your child show interest in repetitive patterns?</label>
+            <select name="a1">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Does your child avoid social interactions?</label>
+            <select name="a2">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Does your child have difficulty understanding social cues?</label>
+            <select name="a3">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Is your child sensitive to loud noises?</label>
+            <select name="a4">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Does your child exhibit repetitive movements?</label>
+            <select name="a5">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Does your child avoid eye contact?</label>
+            <select name="a6">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Does your child prefer routines?</label>
+            <select name="a7">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Does your child have difficulty understanding emotions?</label>
+            <select name="a8">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Is your child overly focused on specific interests?</label>
+            <select name="a9">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Autism Spectrum Quotient Score (1-10)</label>
+            <input type="number" name="a10" min="1" max="10" required>
+
+            <label>Age of the child</label>
+            <input type="number" name="age" min="2" required>
+
+            <h2>Medical History</h2>
+
+            <label>Social Responsiveness Scale Score</label>
+            <input type="number" name="social_scale" min="0" max="100" required>
+
+            <label>Speech Delay or Language Disorder</label>
+            <select name="speech_delay">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Learning Disorder</label>
+            <select name="learning_disorder">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Any Genetic Disorders?</label>
+            <select name="genetic_disorders">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Depression or Mood Disorders?</label>
+            <select name="depression">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Global Developmental Delay or Intellectual Disability</label>
+            <select name="developmental_delay">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Any Social/Behavioral Issues?</label>
+            <select name="social_issues">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Childhood Autism Rating Scale</label>
+            <input type="number" name="autism_rating" min="0.0" max="10.0" required>
+
+            <h2>Additional Information</h2>
+
+            <label>Anxiety Disorder</label>
+            <select name="anxiety">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Sex</label>
+            <select name="sex">
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+
+            <label>History of Jaundice at Birth</label>
+            <select name="jaundice">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Family Member with ASD</label>
+            <select name="family_asd">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+    </section>
+</body>
+</html>
